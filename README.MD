@@ -1,15 +1,15 @@
 
-1. .pyÎÄ¼ş·Åµ½easytrader/easytraderÄ¿Â¼ÏÂ
-tdx.json ·Åµ½easytrader/easytrader/configÄ¿Â¼ÏÂ£¬ ÀïÃæµÄÅäÖÃµ½ÏÂÃæËµµÄÍøÒ³²é
-¶àip»áÂÖÁ÷³¢ÊÔ£¬µÚÒ»¸ö³É¹¦µÄ·µ»Ø¡£
+1. 
+.pyæ–‡ä»¶æ”¾åˆ°easytrader/easytraderç›®å½•ä¸‹
+tdx.json æ”¾åˆ°easytrader/easytrader/configç›®å½•ä¸‹ï¼Œ é‡Œé¢çš„é…ç½®åˆ°ä¸‹é¢è¯´çš„ç½‘é¡µæŸ¥
+å¤šipä¼šè½®æµå°è¯•ï¼Œç¬¬ä¸€ä¸ªæˆåŠŸçš„è¿”å›ã€‚
 
-xd.json ·Åµ½×Ô¼ºË½ÓĞµØ·½£¬ prepareµÄÊ±ºòÖ¸¶¨Ä¿Â¼¼´¿É¡£
-xd.jsonÀï£¬brokerÖ¸Ïòtdx.jsonÖĞµÄÈ¯ÉÌ¼ò³Æ£¬ yybidÊÇÓªÒµ²¿±àÂë£¬µ½ÍøÒ³²é http://www.chaoguwaigua.com/downloads/qszl.htm 
+xd.json æ”¾åˆ°è‡ªå·±ç§æœ‰åœ°æ–¹ï¼Œ prepareçš„æ—¶å€™æŒ‡å®šç›®å½•å³å¯ã€‚
+xd.jsoné‡Œï¼ŒbrokeræŒ‡å‘tdx.jsonä¸­çš„åˆ¸å•†ç®€ç§°ï¼Œ yybidæ˜¯è¥ä¸šéƒ¨ç¼–ç ï¼Œåˆ°ç½‘é¡µæŸ¥ http://www.chaoguwaigua.com/downloads/qszl.htm 
+
+2.
+ç›¸å…³çš„dlléƒ½æ”¾å…¥åŒä¸€ä¸ªç›®å½•tdxdlls
+è¿è¡Œå‰ï¼Œ æŠŠtdxdllsç›®å½•åŠ å…¥ç³»ç»Ÿpathä¸­ï¼Œæˆ–è€…æŠŠtdxdllsç›®å½•ä¸‹æ‰€æœ‰dllæ‹·è´åˆ°æ‰§è¡Œæ—¶çš„å·¥ä½œç›®å½•ã€‚
 
 
-
-2.Ïà¹ØµÄdll¶¼·ÅÈëÍ¬Ò»¸öÄ¿Â¼tdxdlls
-ÔËĞĞÇ°£¬ °ÑtdxdllsÄ¿Â¼¼ÓÈëÏµÍ³pathÖĞ£¬»òÕß°ÑtdxdllsÄ¿Â¼ÏÂËùÓĞdll¿½±´µ½Ö´ĞĞÊ±µÄ¹¤×÷Ä¿Â¼¡£
-
--- @ÀÏ¶Å
 
