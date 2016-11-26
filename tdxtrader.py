@@ -12,18 +12,19 @@ class NotLoginError(Exception):
         super(NotLoginError, self).__init__()
         self.result = result
 
-
+thedll =None # 将thedll放到全局变量，防止因为作为对象的属性，导致pickle失败
 class TDXTrader:
     global_config_path = os.path.dirname(__file__) + '/config/global.json'
     config_path = os.path.dirname(__file__) + '/config/tdx.json'
 
     def __init__(self):
+        global thedll
         self.account_config = None
         self.s = None
         self.exchange_stock_account = dict()
 
         self.__read_config()
-        self.dll = TDXDLL()
+        thedll = TDXDLL()
 
         self.exchange_stock_account = dict()
 
@@ -50,17 +51,18 @@ class TDXTrader:
             log.info("attempt connect to {}".format(addr))
             ip, port = addr.split(':')
             try:
-                self.dll.logon(ip, int(port), yyb, account, password)
+                thedll.logon(ip, int(port), yyb, account, password)
                 log.info("connect to {} successed!".format(addr))
                 self.get_share_holder_account()
                 return True
             except DLLError as e:
-                log.info(e)
+            	  log.info(e)
+            	  time.sleep(1)
         if throw:
             raise NotLoginError("无法连接broker: {}".format(broker))
 
     def logoff(self):
-        self.dll.logoff()
+        thedll.logoff()
 
     def autologin(self, limit=3):
         """实现自动登录
@@ -82,7 +84,7 @@ class TDXTrader:
     # #####################################################################
 
     def _query(self, querytype):
-        success, data = self.dll.querydata(querytype)
+        success, data = thedll.querydata(querytype)
         if success:
             return self.format_response_data(data)
         else:
@@ -145,7 +147,7 @@ class TDXTrader:
         exchange_type = sh_exchange_type if helpers.get_stock_type(stock_code) == 'sh' else sz_exchange_type
         gddm = self.exchange_stock_account[exchange_type]
 
-        success, data = self.dll.sendorder(ordertype, pricetype, gddm, stock_code, price, quantity)
+        success, data = thedll.sendorder(ordertype, pricetype, gddm, stock_code, price, quantity)
 
         if success:
             return self.format_response_data(data)
@@ -168,7 +170,7 @@ class TDXTrader:
         for e in entrusts:
             if e['委托编号'] == entrust_no:
                 exchangeid = e['交易所代码']
-                success, data = self.dll.cancelorder(exchangeid, entrust_no)
+                success, data = thedll.cancelorder(exchangeid, entrust_no)
                 return success
         return False
 
@@ -184,10 +186,10 @@ class TDXTrader:
     # todo: 查询某股票的实时5档行情(似乎有用， 感觉券商行情比用网络免费行情源要可靠， 可以替代easyquotation)
 
     def get_last_errmsg(self):
-        return self.dll.get_last_errmsg()
+        return thedll.get_last_errmsg()
 
     def get_last_result(self):
-        return self.dll.get_last_result()
+        return thedll.get_last_result()
     # #####################################################################
     # 辅助类方法
     # #####################################################################
