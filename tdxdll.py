@@ -79,11 +79,12 @@ PriceType = {
 
 
 class TDXDLL:
-    def __init__(self):
+    def __init__(self, broker):
         self.sessionid = -1
+        dllname = '{}.dll'.format(broker)
         # dllpath = os.path.join(os.path.dirname(__file__), 'trader.dll')
-        print(ctypesutil.find_library('trader.dll'))
-        self.dll = windll.LoadLibrary('trader.dll')
+        print(ctypesutil.find_library(dllname))
+        self.dll = windll.LoadLibrary(dllname)
         self.opentdx()
 
         self.errmsg = create_string_buffer(256)
@@ -109,7 +110,7 @@ class TDXDLL:
         # ///void   CloseTdx();
         self.dll.OpenTdx()
 
-    def logon(self, ip, port, yyb, account, pwd):
+    def logon(self, ip, port, version, yyb, account, pwd):
         # /// <summary>
         # /// 交易账户登录
         # /// </summary>
@@ -128,7 +129,7 @@ class TDXDLL:
         # ///             char* JyPassword,   char* TxPassword, char* ErrInfo);
         sessionid = self.dll.Logon(ip.encode(),
                                    port,
-                                   b'6.50',
+                                   version.encode(),
                                    yyb,
                                    account.encode(),
                                    account.encode(),
@@ -197,6 +198,6 @@ class TDXDLL:
         # /// <param name="Result">同上</param>
         # /// <param name="ErrInfo">同上</param>
         # /// void  CancelOrder(int ClientID, char* ExchangeID, char* hth, char* Result, char* ErrInfo);
-        self.dll.CancelOrder(self.sessionid, exchangeid.encode(), wth.encode(),self.result, self.errmsg)
+        self.dll.CancelOrder(self.sessionid, exchangeid.encode(), wth.encode(), self.result, self.errmsg)
 
         return (True, self.get_last_result()) if self.errmsg.value == b"" else (False, self.get_last_errmsg())

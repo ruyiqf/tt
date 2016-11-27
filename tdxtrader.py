@@ -17,14 +17,14 @@ class TDXTrader:
     global_config_path = os.path.dirname(__file__) + '/config/global.json'
     config_path = os.path.dirname(__file__) + '/config/tdx.json'
 
-    def __init__(self):
+    def __init__(self, broker):
         global thedll
         self.account_config = None
         self.s = None
         self.exchange_stock_account = dict()
 
         self.__read_config()
-        thedll = TDXDLL()
+        thedll = TDXDLL(broker)
 
         self.exchange_stock_account = dict()
 
@@ -44,18 +44,18 @@ class TDXTrader:
         yyb = self.account_config['yybid']
         account = self.account_config['account']
         password = self.account_config['password']
-
+        version = self.account_config['version'] 
         iplist = self.config[broker]
 
         for addr in iplist.values():
             log.info("attempt connect to {}".format(addr))
             ip, port = addr.split(':')
             try:
-                thedll.logon(ip, int(port), yyb, account, password)
+                thedll.logon(ip, int(port), version, yyb, account, password)
                 log.info("connect to {} successed!".format(addr))
                 self.get_share_holder_account()
                 return True
-            except DLLError as e:
+            except Exception as e:
             	  log.info(e)
             	  time.sleep(1)
         if throw:
