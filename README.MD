@@ -6,9 +6,9 @@ tdx.json 放到easytrader/easytrader/config目录下， 里面的配置到网页
 
 多ip会轮流尝试，第一个成功的返回。
 
-<brokder>.json 放到自己私有地方， prepare的时候指定目录即可。
+[brokder].json 放到自己私有地方， prepare的时候指定目录即可。
 
-<brokder>.json里: 
+[brokder].json里: 
   * broker指向tdx.json中的券商简称，建议按照tdx+简称命名， 如tdxxd表示信达证券 
   * yybid是营业部编码，到网页查 
   * version建议按网页填写， 填别的有没有问题不知道。
@@ -36,7 +36,7 @@ from .tdxtrader import TDXTrader
 
 
 20161127: 
-  因为各个券商需要各自的dll文件， 所以要把traderXXX.dll改名为<broker名>.dll, 以防止互相干扰
+  因为各个券商需要各自的dll文件， 所以要把traderXXX.dll改名为[brokder].dll, 以防止互相干扰
 
 api中增加broker名作为初始化参数
 
