@@ -35,11 +35,11 @@ from .tdxtrader import TDXTrader
 from .tdxtrader import TDXTrader
 `
 ### 3. 关于dll文件
-**因为担心涉及到安全隐患，本处不提供, 也不要向我索取。需要的到网上自行搜索。 使用dll及本软件的风险自行承担**
+**因为无法排除安全隐患，本处不提供dll文件, 也不要向我索取。需要的到网上自行搜索。 使用dll及本代码的风险自行承担**
 
 
 20161127: 
-  因为各个券商需要各自的dll文件， 所以要把traderXXX.dll改名为[brokder].dll, 以防止互相干扰
+  因为各个券商需要各自的dll文件， 所以要把tradeXXX.dll改名为[brokder].dll, 以防止互相干扰
 
 api中增加broker名作为初始化参数
 
