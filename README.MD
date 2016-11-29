@@ -20,15 +20,18 @@ tdx.json 放到easytrader/easytrader/config目录下， 里面的配置到网页
 ### 2. 配合修改
 ##### easytrader/api.py文件增加以下内容：
 `from .tdxdll import TDXDLL
+
 from .tdxtrader import TDXTrader
 `
 ##### use函数增加：
 `    elif broker.lower() in ['tdxxd']:
+
         return TDXTrader('tdxxd')
     ......
 `
 #### easytrader.__init__.py文件增加
 `from .tdxdll import TDXDLL
+
 from .tdxtrader import TDXTrader
 `
 ### 3. 关于dll文件
